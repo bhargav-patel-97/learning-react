@@ -1,40 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-class App extends Component {
-  state = {
+const app = () => {
+  const [ personsState, setPersonsState ] = useState({
     persons: [
       { name: 'Bhargav', age: 22 },
       { name: 'Nihar', age: 20 },
       { name: 'Abhi', age:19 }
     ]
-  }
+  });
 
-  switchNameHandler = () => {
+  const switchNameHandler = () => {
     //DONT DO THIS this.state.persons[0] = 'Bhargav Patel';
     // INSTEAD, USE setState METHOD
-    this.setState({
+    setPersonsState({
       persons: [
         { name: 'Pratik', age: 22 },
         { name: 'Arjun', age: 21 },
         { name: 'Hit', age:22 }
       ]
     });
-    } 
+    };
 
-  render() {
+    const handleChange = (event) => {
+      setPersonsState({
+        persons: [
+          { name: 'Pratik', age: 22 },
+          { name: event.target.value, age: 21 },
+          { name: 'Hit', age:22 }
+        ]
+      });
+    };
+
     return (
       <div className="App">
         <h1 className="App-title">Welcome to React</h1>
-        <button onClick={this.switchNameHandler}>Switch Names</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>My hobby is JavaScript</Person>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+        <button className="Button" onClick={switchNameHandler}>Switch Names</button>
+        
+        <Person name={personsState.persons[0].name} age={personsState.persons[0].age}/>
+        <Person 
+        name={personsState.persons[1].name} 
+        age={personsState.persons[1].age}
+        change={handleChange}
+        />
+        <Person name={personsState.persons[2].name} age={personsState.persons[2].age}/>
       </div>
     );
-   //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work?',));
-  }
 }
 
-export default App;
+export default app;
