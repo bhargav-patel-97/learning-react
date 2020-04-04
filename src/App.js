@@ -29,21 +29,28 @@ state = {
     }
 
   render () {
+    
+    let persons = null;
+
+    if (this.state.displayPersons) {
+      persons = (
+        <div>
+          <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+          <Person 
+            name={this.state.persons[1].name} 
+            age={this.state.persons[1].age}
+            change={this.handleChange}
+          />
+          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+      </div>
+      )
+    } 
+
     return (
       <div className="App">
         <h1 className="App-title">Welcome to React</h1>
         <button className="Button" onClick={this.togglePersonHandle}>Toggle</button>
-        { this.state.displayPersons ?
-          <div>
-            <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-            <Person 
-              name={this.state.persons[1].name} 
-              age={this.state.persons[1].age}
-              change={this.handleChange}
-            />
-            <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
-          </div> : null
-        }
+        {persons}
       </div>
     )
   };
