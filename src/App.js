@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-class app extends Component {
+import Radium from 'radium';
+
+class App extends Component {
 
   constructor(props) {
     super(props);
@@ -42,11 +44,19 @@ state = {
 
   render () {
     const style = {
-      display: 'block',
       margin: '1% auto',
-      padding: '4px 12px',
+      border: 'none',
+      focus: 'none',
+      padding: '10px 20px',
       backgroundColor: 'green',
-      color: 'white'
+      color: 'white',
+      borderRadius: '20px',
+      fontWeight: 'bold',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: '#333',
+        transition: 'all ease 0.5s'
+      }
     };
 
     let persons = null;
@@ -65,6 +75,11 @@ state = {
       </div>
       );
       style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: '#333',
+        transition: 'all ease 0.5s'
+      }
     } 
     const classes = [];
   
@@ -77,11 +92,11 @@ state = {
     return (
       <div className="App">
         <h1 className={classes.join(' ')}>We have {this.state.persons.length} person(s) onboard!</h1>
-        <button style={style} onClick={this.togglePersonHandle}>Toggle</button>
+        <button style={style} onClick={this.togglePersonHandle}>TOGGLE</button>
         {persons}
       </div>
     )
   };
 }
 
-export default app;
+export default Radium(App);
