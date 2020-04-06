@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
 
@@ -89,12 +89,15 @@ state = {
     if (this.state.persons.length <= 1) {
       classes.push('danger');
     }
+
     return (
-      <div className="App">
-        <h1 className={classes.join(' ')}>We have {this.state.persons.length} person(s) onboard!</h1>
-        <button style={style} onClick={this.togglePersonHandle}>TOGGLE</button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1 className={classes.join(' ')}>We have {this.state.persons.length} person(s) onboard!</h1>
+          <button style={style} onClick={this.togglePersonHandle}>TOGGLE</button>
+          {persons}
+        </div>
+      </StyleRoot>
     )
   };
 }
