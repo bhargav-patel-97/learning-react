@@ -17,3 +17,26 @@
     transition: all 0.5s ease;
     overflow: hidden;
 }
+
+.inputField {
+    width: 60%;
+  }
+
+.removeBtn {
+    background-image: url('../img/icons8-delete-50.png') !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 1rem !important;
+    padding: 0.1rem !important;
+    height: 1rem;
+    border: none;
+    position: relative;
+    left: 18%;
+    bottom: 3.5rem;
+  }
+
+  @media (max-width: 500px) {
+      .Person {
+          width: 60%;
+      }
+  }

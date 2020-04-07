@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.css';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 state = {
     persons: [
       { name: 'Person 1', age: 22, id:0 },
@@ -43,23 +38,9 @@ state = {
     }
 
   render () {
-    const style = {
-      margin: '1% auto',
-      border: 'none',
-      focus: 'none',
-      padding: '10px 20px',
-      backgroundColor: 'green',
-      color: 'white',
-      borderRadius: '20px',
-      fontWeight: 'bold',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: '#333',
-        transition: 'all ease 0.5s'
-      }
-    };
 
     let persons = null;
+    let btnClass ='';
 
     if (this.state.displayPersons) {
       persons = (
@@ -74,32 +55,28 @@ state = {
         })}
       </div>
       );
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: '#333',
-        transition: 'all ease 0.5s'
-      }
+
+      btnClass = styles.Red;
     } 
     const classes = [];
   
     if(this.state.persons.length <= 2) {
-      classes.push('red');
+      classes.push(styles.red);
     }
     if (this.state.persons.length <= 1) {
-      classes.push('danger');
+      classes.push(styles.danger);
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
+        <div className={styles.App}>
           <h1 className={classes.join(' ')}>We have {this.state.persons.length} person(s) onboard!</h1>
-          <button style={style} onClick={this.togglePersonHandle}>TOGGLE</button>
+          <button
+          className={btnClass}
+          onClick={this.togglePersonHandle}>TOGGLE</button>
           {persons}
         </div>
-      </StyleRoot>
     )
   };
 }
 
-export default Radium(App);
+export default App;
