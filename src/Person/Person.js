@@ -7,7 +7,6 @@ const person = (props) => {
         '@media (max-width: 500px)': {
             width: '450px',
             margin: '20 auto',
-            
         }
     };
     return (
