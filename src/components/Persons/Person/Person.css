@@ -23,7 +23,7 @@
   }
 
 .removeBtn {
-    background-image: url('../img/icons8-delete-50.png') !important;
+    background-image: url('./../../../assets/img/icons8-delete-50.png') !important;
     background-size: contain;
     background-repeat: no-repeat;
     width: 1rem !important;
