@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Cockpit.css';
+import AuthContext from '../../context/auth-context';
 
 const cockpit = (props) => {
 
@@ -25,6 +26,9 @@ const cockpit = (props) => {
             className={btnClass}
             onClick={props.clicked}>TOGGLE
             </button>
+            <AuthContext.Consumer>
+              {(context) => <button onCLick={context.login}>Log In</button>}
+            </AuthContext.Consumer>
         </div>
     );
 }

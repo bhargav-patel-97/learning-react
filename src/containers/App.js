@@ -3,6 +3,7 @@ import styles from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import WithClass from '../hoc/WithClass';
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
 state = {
@@ -11,7 +12,8 @@ state = {
       { name: 'Person 2', age: 20, id:1 },
       { name: 'Person 3', age:19, id:2 }
     ],
-    displayPersons: false
+    displayPersons: false,
+    authenticated: false
   }
 
     deletePersonHandle = (index) => {
@@ -39,26 +41,40 @@ state = {
       this.setState({persons: persons});
     }
 
+    loginHandler= () => {
+      this.setState({authenticated: true});
+    };
+
   render () {
 
     let persons = null;
 
 
     if (this.state.displayPersons) {
-      persons = <Persons 
+      persons = <WithClass classes={styles.Persons}>
+      <Persons 
        persons={this.state.persons}
        onClick={this.deletePersonHandle}
-       changed={this.nameChangeHandler}/>;
+       changed={this.nameChangeHandler}/>
+       </WithClass>;
     } 
    
     return (
         <WithClass classes={styles.App}>
-        <Cockpit
-        title = {this.props.title}
-        showPersons = {this.state.showPersons}
-        personsLength = {this.state.persons.length}
-        clicked = {this.togglePersonHandle} />
-        {persons}
+          <AuthContext.Provider 
+            value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler
+            }}
+          >
+            <Cockpit
+              title = {this.props.title}
+              showPersons = {this.state.showPersons}
+              personsLength = {this.state.persons.length}
+              clicked = {this.togglePersonHandle}
+              />
+              {persons}
+          </AuthContext.Provider>
         </WithClass>
     )
   };
