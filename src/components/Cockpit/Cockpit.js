@@ -10,17 +10,17 @@ const cockpit = (props) => {
         btnClass = styles.Red;
     }
 
-    if(props.persons.length <= 2) {
+    if(props.personsLength <= 2) {
       classes.push(styles.red);
     }
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
       classes.push(styles.danger);
     }
 
     return(
         <div className={styles.Cockpit}>
             <h1>{props.title}</h1>
-            <h2 className={classes.join(' ')}>We have {props.persons.length} person(s) onboard!</h2>
+            <h2 className={classes.join(' ')}>We have {props.personsLength} person(s) onboard!</h2>
             <button
             className={btnClass}
             onClick={props.clicked}>TOGGLE
@@ -29,4 +29,4 @@ const cockpit = (props) => {
     );
 }
 
-export default cockpit;
+export default React.memo(cockpit);

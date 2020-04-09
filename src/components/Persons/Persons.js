@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
 
-const persons = (props) => props.persons.map( (person,index) => {
-        return <Person
-          clicked={() => props.onClick(index)} 
-          name={person.name}
-          age={person.age}
-          key={person.id}
-          changed={(event) => props.changed(event, person.id)} />
-      });
 
-export default persons; 
+
+class Persons extends PureComponent {
+
+  render() {
+    return this.props.persons.map( (person,index) => { 
+      return (  
+      <Person
+      clicked={() => this.props.onClick(index)} 
+      name={person.name}
+      age={person.age}
+      key={person.id}
+      changed
+      ={(event) => this.props.changed(event, person.id)} />
+      );
+    });
+  } 
+}
+
+export default Persons; 
