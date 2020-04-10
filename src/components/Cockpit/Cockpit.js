@@ -9,6 +9,7 @@ const cockpit = (props) => {
 
     if(props.showPersons) {
         btnClass = styles.Red;
+        console.log("Persons Showing");
     }
 
     if(props.personsLength <= 2) {
@@ -27,7 +28,7 @@ const cockpit = (props) => {
             onClick={props.clicked}>TOGGLE
             </button>
             <AuthContext.Consumer>
-              {(context) => <button onCLick={context.login}>Log In</button>}
+              {(context) => <button onClick={context.login}>Log In</button>}
             </AuthContext.Consumer>
         </div>
     );
