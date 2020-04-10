@@ -13,7 +13,7 @@
 }
 
 .Person:hover {
-    background-color: burlywood;
+    background-color: #49a14181;
     height: 8.2em;
     transition: all 0.5s ease;
     overflow: hidden;
